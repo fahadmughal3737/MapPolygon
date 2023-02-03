@@ -20,7 +20,48 @@ const App = (props: any) => {
     {latitude: 36.940495, longitude: 77.448587},
   ]);
 
-  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6]); //number and names of countries and their values of long and lat in JSON
+  // const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6]); //number and names of countries and their values of long and lat in JSON
+
+  const [numbers, setNumbers] = useState([
+    {
+      country: 'Pakistan',
+      coordinates: [
+        {latitude: 29.940495, longitude: 69.448587},
+        {latitude: 11.940495, longitude: 72.448587},
+        {latitude: 34.940495, longitude: 75.448587},
+        {latitude: 36.940495, longitude: 77.448587},
+        {latitude: 22.940495, longitude: 46.448587},
+        {latitude: 22.940495, longitude: 22.448587},
+        {latitude: 23.940495, longitude: 45.448587},
+        {latitude: 23.940495, longitude: 67.448587},
+        {latitude: 23.940495, longitude: 23.448587},
+        {latitude: 56.940495, longitude: 92.448587},
+        {latitude: 11.940495, longitude: 76.448587},
+        {latitude: 23.940495, longitude: 45.448587},
+      ],
+      users: 12315123,
+    },
+    {
+      country: 'India',
+      coordinates: [
+        {latitude: 11.940495, longitude: 69.448587},
+        {latitude: 22.940495, longitude: 72.448587},
+        {latitude: 33.940495, longitude: 75.448587},
+        {latitude: 55.940495, longitude: 77.448587},
+      ],
+      users: 547567856,
+    },
+    {
+      country: 'USA',
+      coordinates: [
+        {latitude: 77.940495, longitude: 69.448587},
+        {latitude: 55.940495, longitude: 72.448587},
+        {latitude: 33.940495, longitude: 75.448587},
+        {latitude: 22.940495, longitude: 77.448587},
+      ],
+      users: 213213,
+    },
+  ]);
   return (
     <View style={styles.container}>
       <View
@@ -68,26 +109,18 @@ const App = (props: any) => {
             console.log('current regionnn', region);
           }}
           style={{flex: 1}}>
-          {/* <Polygon
-            style={{flex: 1}}
-            tappable={true}
-            coordinates={coordinateArray}
-            fillColor={colors.PRIMARY}
-            // strokeColor={colors.SECONDARY}
-            strokeWidth={1}
-            onPress={() => {
-              console.log('pressed');
-            }}
-          /> */}
           {numbers.map((data: any, index: number) => {
             return (
               <Polygon
                 style={{flex: 1}}
                 tappable={true}
-                coordinates={coordinateArray}
-                fillColor={colors.PRIMARY}
-                // strokeColor={colors.SECONDARY}
-                strokeWidth={1}
+                coordinates={data.coordinates}
+                fillColor={
+                  data.users > 4000000 ? colors.PRIMARY : colors.SECONDARY
+                }
+                // fillColor={colors.PRIMARY}
+                strokeColor={colors.SECONDARY}
+                strokeWidth={10}
                 onPress={() => {
                   console.log('pressed');
                 }}
