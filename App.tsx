@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import MapView, {Polygon, Geojson} from 'react-native-maps';
+import {colors} from './colors';
 import {dataSet} from './dataset';
 const App = (props: any) => {
   const values = dataSet.sort((x, y) => y - x).slice(0, 3);
@@ -14,12 +15,12 @@ const App = (props: any) => {
 
   const [coordinateArray, setCoordinateArray] = useState([
     {latitude: 29.940495, longitude: 69.448587},
-    {latitude: 29.940495, longitude: 69.448587},
-    {latitude: 29.940495, longitude: 69.448587},
-    {latitude: 29.940495, longitude: 69.448587},
-    {latitude: 29.940495, longitude: 69.448587},
-    {latitude: 29.940495, longitude: 69.448587},
+    {latitude: 11.940495, longitude: 72.448587},
+    {latitude: 34.940495, longitude: 75.448587},
+    {latitude: 36.940495, longitude: 77.448587},
   ]);
+
+  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5, 6]); //number and names of countries and their values of long and lat in JSON
   return (
     <View style={styles.container}>
       <View
@@ -67,17 +68,32 @@ const App = (props: any) => {
             console.log('current regionnn', region);
           }}
           style={{flex: 1}}>
-          <Polygon
+          {/* <Polygon
             style={{flex: 1}}
             tappable={true}
             coordinates={coordinateArray}
-            fillColor="#ffffff"
-            strokeColor="#ffffff"
-            strokeWidth={100}
+            fillColor={colors.PRIMARY}
+            // strokeColor={colors.SECONDARY}
+            strokeWidth={1}
             onPress={() => {
               console.log('pressed');
             }}
-          />
+          /> */}
+          {numbers.map((data: any, index: number) => {
+            return (
+              <Polygon
+                style={{flex: 1}}
+                tappable={true}
+                coordinates={coordinateArray}
+                fillColor={colors.PRIMARY}
+                // strokeColor={colors.SECONDARY}
+                strokeWidth={1}
+                onPress={() => {
+                  console.log('pressed');
+                }}
+              />
+            );
+          })}
         </MapView>
       </View>
     </View>
